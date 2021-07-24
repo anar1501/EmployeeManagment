@@ -1,0 +1,25 @@
+body {
+    padding-top: 50px;
+}
+#thanks-you {
+    color: #000;
+}
+#thank-you .blue-link {
+    color: #46b7d2;
+    text-decoration: none;
+}
+#thank-you .blue-link:hover {
+    text-decoration: underline;
+}
+#thank-you img {
+    width: 300px;
+}
+#thank-you .btn-blue {
+    width: 150px;
+    border-color: #46b7d2;
+    color: #46b7d2;
+}
+#thank-you .btn-blue:hover {
+    background-color: #46b7d2;
+    color: #fff;
+}

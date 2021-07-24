@@ -1,0 +1,27 @@
+.bck-image {
+    background-image: url(../insertimg/833cb826-522b-11e7-a1f2-db19572361bb.jpg);
+}
+
+.main-div {
+    background-color: rgb(47, 134, 229);
+    opacity: 90%;
+    margin: auto;
+    margin-top: 200px;
+    width: 600px;
+    height: 500px;
+    border-radius: 20px;
+
+}
+
+form {
+    margin: auto;
+    position: relative;
+    top: 100px;
+    width: 50%;
+}
+input{
+    margin-left: 30px;
+}
+button{
+    float: right;
+}
