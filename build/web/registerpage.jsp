@@ -32,8 +32,9 @@
                         <form action="register-user-save" method="post">
                             <input class="form-control" type="text" name="name" placeholder="Name" required>
                             <input class="form-control" type="text" name="surname" placeholder="Surname" required>
+                        <c:out value="${errore}"></c:out>
                             <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
-                        <c:out value="${error}"></c:out>
+                        <c:out value="${errorp}"></c:out>
                             <input class="form-control" type="password" name="password" placeholder="Password" required>
                             <input class="form-control" type="password" name="password-repeat" placeholder="Repeat password" required>
                             <div class="form-button">
@@ -45,7 +46,7 @@
                             <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a><a href="#"><i class="fab fa-google"></i>Google</a><a href="#"><i class="fab fa-linkedin-in"></i>Linkedin</a>
                         </div>
                         <div class="page-links">
-                            <a href="login17.html">Login to account</a>
+                            <a href="login">Login to account</a>
                         </div>
                     </div>
                 </div>

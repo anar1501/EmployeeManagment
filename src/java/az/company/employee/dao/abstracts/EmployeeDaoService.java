@@ -8,5 +8,11 @@ public interface EmployeeDaoService {
     List<Employee>findAll();
 
     void save(Employee employee);
+
+    public Employee findById(int id);
+
+    public void updateById(Employee employee);
+
+    public void deleteById(Employee employee);
     
 }

@@ -1,19 +1,23 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="/employee/vendornavbar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+        <link href="/employee/vendornavbar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/employee/assetsnavbar/css/fontawesome.css">
         <link rel="stylesheet" href="/employee/assetsnavbar/css/templatemo-grad-school.css">
         <link rel="stylesheet" href="/employee/assetsnavbar/css/owl.css">
         <link rel="stylesheet" href="/employee/assetsnavbar/css/lightbox.css">
 
     </head>
-    <body>
 
+    <body>
         <header class="main-header clearfix" role="header">
+
+
             <div class="logo">
+
                 <c:choose>
                     <c:when test="${homename eq 'Home Page'}">
                         <a href="${home_url}"><em>Home</em> Page</a>
@@ -33,15 +37,19 @@
 
                 </c:choose>
             </div>
+
             <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
             <nav id="menu" class="main-nav" role="navigation">
                 <ul class="main-menu">
+                    <c:if test="${user ne null and user.getRoleName() ne null and user.roleName eq 'ADMIN'}">
+                        <li class="${selected_admin}"><a href="${admin_url}">Admin Panel</a></li>
+                        </c:if>
                     <li class="${selected_home}"><a href="${home_url}">Home</a></li>
                     <li class="${selected_employeelist}"><a href="${employeelist_url}">Employee List</a>
                         <ul class="sub-menu">
                             <li class="${selected_insert}"><a href="${insert_url}">Insert Employee</a></li>
-                            <li><a href="#section3">What we do?</a></li>
-                            <li><a href="#section3">How it works?</a></li>
+                            <li class="${selected_edit}"><a href="${edit_url}">Edit Employee</a></li>
+                            <li class="${selected_delete}"><a href="${delete_url}">Delete Employee</a></li>
                             <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
                         </ul>
                     </li>

@@ -18,37 +18,44 @@ public class RegisterConfirmController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String code = request.getParameter("code");
         UserDaoService userDaoService = new UserDaoManager();
+        
         if (code == null) {
-            request.setAttribute("info1", "Activation code is not correct!");
+            
+            request.setAttribute("infoe", "Confirmation code is not correct!");
             request.getRequestDispatcher("error-info").forward(request, response);
+            
         } else {
+            
             code = MD5.hashedMd5(code);
 
             User user = userDaoService.findByActivationCode(code);
 
             if (user == null) {
-                request.setAttribute("info1", "Activation code is not correct!");
+                
+                request.setAttribute("infoe", "Confirmation code is not correct!");
                 request.getRequestDispatcher("error-info").forward(request, response);
+                
             } else {
                 LocalDateTime expiredDate = user.getExpiredDate();
                 LocalDateTime currentDate = LocalDateTime.now();
 
                 if (expiredDate.isBefore(currentDate)) {
-                    request.setAttribute("info1", "Activation code is expired!");
-                    request.setAttribute("info2", "resend?id=" + user.getId() + "");
+                    request.setAttribute("infoex", "Confirmation code is expired!");
+                    request.setAttribute("infos", request.getContextPath()+"/resend?id="+user.getId());
                     request.getRequestDispatcher("error-info").forward(request, response);
 
                 } else if (user.getStatus() == UserStatusEnum.CONFIRMED.getValue()) {
 
-                    request.setAttribute("info1", "Your account already confirmed!");
+                    request.setAttribute("infoe", "Your account already confirmed!");
                     request.getRequestDispatcher("error-info").forward(request, response);
 
                 } else {
 
                     userDaoService.updateStatusById(user.getId(), UserStatusEnum.CONFIRMED);
-                    request.setAttribute("info2", "Your account is confirmed!");
+                    request.setAttribute("infos", "Your account is confirmed!");
                     request.getRequestDispatcher("success-info").forward(request, response);
 
                 }

@@ -1,0 +1,98 @@
+body {
+    background-color: #f6f4f5;
+}
+header {
+    background-color: #212c42;
+}
+
+.navbar .navbar-brand {
+    color: #fff !important;
+    font-family: 'Varela Round', sans-serif;
+}
+.navbar .navbar-brand span {
+    color: #f8a727;
+}
+.navbar .nav-item {
+    margin: 0 5px 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.navbar .nav-item a,
+.navbar .nav-item a:visited {
+    color: #fff;
+}
+.navbar .nav-item a:hover,
+.navbar .nav-item a:active {
+    color: #f8a727;
+}
+.navbar .dropdown-menu .dropdown-item {
+    color: #212c42 !important;
+}
+.navbar-toggler {
+    color: #fff;
+}
+
+.card {
+    width: 100%;
+}
+@media (min-width: 1200px) {
+    .card {
+        width: 80%;
+    }
+}
+
+.card,
+.card .card-footer {
+    border: 0;
+    background-color: #fff;
+}
+.card .card-header {
+    padding: 15px 20px;
+    background-color: #299be4;
+    color: #000;
+}
+.card .card-header .btn {
+    border-radius: 0;
+    color: #55698b;
+}
+.card .card-body {
+    padding: 15px 20px;
+}
+.card .card-footer {
+    padding: 15px 20px;
+    color: #55698b;
+    font-size: 14px;
+}
+.card .card-footer .pagination .page-link {
+    border: 0;
+    color: #999;
+}
+.card .card-footer .pagination .page-item.active .page-link {
+    background-color: #06a8f3;
+    color: #fff;
+}
+
+.table {
+    border-bottom: 1px solid #dee2e6;
+}
+.table thead th {
+    font-weight: 500;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+.table tbody tr td {
+    line-height: 38px;
+    border: 0;
+}
+.table tbody .form-select {
+    width: fit-content;
+    border-radius: 0;
+}
+.table tbody tr td:nth-child(5) i {
+    font-size: 50%;
+    transform: translate(0%,-30%);
+}
+.table tbody tr td i.green { color: #24ab46; }
+.table tbody tr td i.red { color: #eb4f47; }
+.table tbody tr td i.edit { color: #06a8f3; }
+.table tbody tr td i.delete { color: #eb4f47; }

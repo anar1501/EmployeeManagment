@@ -1,0 +1,35 @@
+.container {
+    width: 1170px;
+}
+.container {
+    width: 970px;
+}
+.container {
+    width: 750px;
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin: ;
+    padding: 150px;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+html {
+    font-size: 10px;
+}
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+}

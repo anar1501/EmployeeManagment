@@ -5,6 +5,9 @@
  */
 package az.company.employee.filter;
 
+import az.company.employee.dao.abstracts.UserDaoService;
+import az.company.employee.dao.concrets.UserDaoManager;
+import az.company.employee.model.concrets.User;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -62,16 +65,31 @@ public class AuthFilter implements Filter {
             HttpServletRequest httpreRequest = (HttpServletRequest) request;
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             HttpSession session = httpreRequest.getSession();
-            Object user = session.getAttribute("user");
-            if (user == null) {
-                httpResponse.sendRedirect(httpreRequest.getContextPath()+"/login");
+            Object userObj = session.getAttribute("user");
+            if (userObj == null) {
+                httpResponse.sendRedirect(httpreRequest.getContextPath() + "/login");
             } else {
-                chain.doFilter(request, response);
+
+                User user = (User) userObj;
+                int id = user.getId();
+                UserDaoService userDaoService = new UserDaoManager();
+                int roleId = userDaoService.findRoleIdByUserId(id);
+                String pageUrl = httpreRequest.getRequestURI();
+                String pageName = userDaoService.findByIdAndPageUrl(roleId, pageUrl);
+                if (pageUrl.equals("/employee/private/logout")) {
+                    chain.doFilter(request, response);
+                }
+                if (pageName == null) {
+                    httpreRequest.setAttribute("infoe", "You are not allowed to use this page.");
+                    httpreRequest.getRequestDispatcher("/error-info").forward(httpreRequest, httpResponse);
+                } else {
+
+                    chain.doFilter(request, response);
+
+                }
+
             }
         } catch (Throwable t) {
-            // If an exception is thrown somewhere down the filter chain,
-            // we still want to execute our after processing, and then
-            // rethrow the problem after that.
             problem = t;
             t.printStackTrace();
         }

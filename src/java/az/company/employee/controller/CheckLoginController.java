@@ -32,20 +32,26 @@ public class CheckLoginController extends HttpServlet {
             } else {
                 boolean passwordIsValid = PasswordHasher.verifyPassword(password, user.getPassword());
                 if (passwordIsValid) {
+                    
                     if (user.getStatus() == UserStatusEnum.CONFIRMED.getValue()) {
 
                         HttpSession session = request.getSession();
                         session.setAttribute("user", user);
                         session.setMaxInactiveInterval(3600);
                         response.sendRedirect("home");
+                        
                     } else {
-                        request.setAttribute("info1", "Your account is not confirmed!");
-                        request.setAttribute("info2", request.getContextPath()+"/resend?id="+user.getId());
-                        request.getRequestDispatcher("error-info").forward(request, response);
+                        
+                        request.setAttribute("infoex", "Your account is not confirmed!");
+                        request.setAttribute("infos", request.getContextPath()+"/resend?id="+user.getId());
+                        request.getRequestDispatcher("/error-info").forward(request, response);
+                        
                     }
                 } else {
+                    
                     request.setAttribute("error", "Password is incorrect!");
                     request.getRequestDispatcher("login").forward(request, response);
+                    
                 }
             }
         } catch (GeneralSecurityException exception) {

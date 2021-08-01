@@ -13,9 +13,12 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("logname", "Login");
-        request.setAttribute("home_url", "home");
+        request.setAttribute("home_url", request.getContextPath()+"/home");
+        request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
         request.setAttribute("employeelist_url", request.getContextPath()+"/private/employee-list");
         request.setAttribute("insert_url", request.getContextPath()+"/private/insert");
+        request.setAttribute("edit_url", request.getContextPath()+"/private/edit-employee-page");
+        request.setAttribute("delete_url", request.getContextPath()+"/private/delete-employee-page");
         request.setAttribute("login_url", "#");
         request.setAttribute("register_url", "register");
         request.setAttribute("selected_login", "active");

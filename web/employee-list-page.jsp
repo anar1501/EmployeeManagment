@@ -42,7 +42,12 @@
                                         <td>${emp.surname}</td>
                                         <td>${emp.age}</td>
                                         <td>${emp.salary}</td>
-                                        <td>${emp.status}<a href="#" class="btn btn-success">Active</a></td>
+                                        <c:if test="${emp.status eq '1'}">
+                                        <td><a href="#" class="btn btn-success">Active</a></td>
+                                        </c:if>
+                                        <c:if test="${emp.status ne '1'}">
+                                        <td><a href="#" class="btn btn-danger">Deactive</a></td>
+                                        </c:if>
                                     </tr>
                                 </c:forEach>
                             </tbody>

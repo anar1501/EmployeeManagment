@@ -1,0 +1,24 @@
+.aktiv{
+    width: 60px;
+    height: 30px;
+    position: relative;
+    appearance: none;
+    outline: none;
+    background-color: red;
+}
+.aktiv::before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-color: white;
+    transition: all .5s ease-in;
+    border-radius:10px;
+}
+.aktiv:checked::before{
+    transform:translate(50px);
+    
+}
+.aktiv:checked{
+    background-color: green;
+}

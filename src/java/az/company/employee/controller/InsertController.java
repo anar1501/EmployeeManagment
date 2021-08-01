@@ -1,10 +1,7 @@
 package az.company.employee.controller;
 
-import az.company.employee.dao.abstracts.EmployeeDaoService;
-import az.company.employee.dao.concrets.EmployeeDaoManager;
-import az.company.employee.model.concrets.Employee;
+
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,14 +15,15 @@ public class InsertController extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("insertname", "Insert");
         request.setAttribute("home_url", request.getContextPath()+"/home");
-        request.setAttribute("employeelist_url", request.getContextPath()+"/private/employee-list");
-        request.setAttribute("login_url", "login");
+        request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
+        request.setAttribute("employeelist_url", request.getContextPath() + "/private/employee-list");
         request.setAttribute("insert_url", "#");
+        request.setAttribute("edit_url", request.getContextPath()+"/private/edit-employee-page");
+        request.setAttribute("delete_url", request.getContextPath()+"/private/delete-employee-page");
         request.setAttribute("register_url", "register");
+        request.setAttribute("login_url", "login");
         request.setAttribute("selected_insert", "active");
-        EmployeeDaoService employeeDaoService = new EmployeeDaoManager();
-        List<Employee> employees = employeeDaoService.findAll();
-        request.setAttribute("employees", employees);
+
         request.getRequestDispatcher("/insertpage.jsp").forward(request, response);
     }
 

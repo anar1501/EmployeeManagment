@@ -1,0 +1,71 @@
+header {
+    background-color: #212c42;
+}
+
+.navbar .navbar-brand {
+    color: #fff !important;
+    font-family: 'Varela Round', sans-serif;
+}
+.navbar .navbar-brand span {
+    color: #f8a727;
+}
+.navbar .nav-item {
+    margin: 0 5px 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.navbar .nav-item a,
+.navbar .nav-item a:visited {
+    color: #fff;
+}
+.navbar .nav-item a:hover,
+.navbar .nav-item a:active {
+    color: #f8a727;
+}
+.navbar .dropdown-menu .dropdown-item {
+    color: #212c42 !important;
+}
+.navbar-toggler {
+    color: #fff;
+}
+
+
+.table tbody .form-select {
+    width: fit-content;
+    border-radius: 0;
+}
+
+
+/*** EDIT USER PAGE ***/
+#editUser {
+    width: 70%;
+}
+#editUser tbody tr td {
+    line-height: 38px;
+    border: 0;
+}
+#editUser thead th {
+    background-color: #212c42;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid #212c42d3 !important;
+}
+#editUser tbody tr td:first-child {
+    text-transform: none;
+}
+#editUser tbody tr {
+    border: 1px solid #212c42;
+}
+#editUser tbody tr:nth-child(2) {
+    border: 0;
+}
+
+#btn-status {
+    width: 80px;
+    color: #fff !important;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+}

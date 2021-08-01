@@ -14,13 +14,17 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("homename", "Home Page");
         request.setAttribute("home_url", "#");
+        request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
         request.setAttribute("employeelist_url", request.getContextPath()+"/private/employee-list");
-        request.setAttribute("login_url", "login");
         request.setAttribute("insert_url", request.getContextPath()+"/private/insert");
+        request.setAttribute("edit_url", request.getContextPath()+"/private/edit-employee-page");
+        request.setAttribute("delete_url", request.getContextPath()+"/private/delete-employee-page");
+        request.setAttribute("login_url", "login");
         request.setAttribute("register_url", "register");
         request.setAttribute("selected_home", "active");
 
         request.getRequestDispatcher("homepage.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -23,6 +23,14 @@ public class User implements Entity {
 
     private LocalDateTime createdDate;
 
+    private String pswActivationCode;
+
+    private LocalDateTime pswExpiredDate;
+
+    private int roleId;
+
+    private String roleName;
+
     public User() {
     }
 
@@ -98,9 +106,43 @@ public class User implements Entity {
         this.createdDate = createdDate;
     }
 
+    public String getPswActivationCode() {
+        return pswActivationCode;
+    }
+
+    public void setPswActivationCode(String pswActivationCode) {
+        this.pswActivationCode = pswActivationCode;
+    }
+
+    public LocalDateTime getPswExpiredDate() {
+        return pswExpiredDate;
+    }
+
+    public void setPswExpiredDate(LocalDateTime pswExpiredDate) {
+        this.pswExpiredDate = pswExpiredDate;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", surname=" + surname + ", status=" + status + ", activationCode=" + activationCode + ", expiredDate=" + expiredDate + ", createdDate=" + createdDate + '}';
+        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", surname=" + surname + ", status=" + status + ", activationCode=" + activationCode + ", expiredDate=" + expiredDate + ", createdDate=" + createdDate + ", pswActivationCode=" + pswActivationCode + ", pswExpiredDate=" + pswExpiredDate + ", roleId=" + roleId + '}';
     }
 
 }

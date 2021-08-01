@@ -17,10 +17,13 @@ public class EmployeeListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("emplistname", "Employee");
-        request.setAttribute("home_url", request.getContextPath()+"/home");
+        request.setAttribute("home_url",request.getContextPath()+"/home");
+        request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
         request.setAttribute("employeelist_url", "#");
+        request.setAttribute("insert_url", request.getContextPath() + "/private/insert");
+        request.setAttribute("edit_url", request.getContextPath() + "/private/edit-employee-page");
+        request.setAttribute("delete_url", request.getContextPath()+"/private/delete-employee-page");
         request.setAttribute("login_url", "login");
-        request.setAttribute("insert_url", request.getContextPath()+"/private/insert");
         request.setAttribute("register_url", "register");
         request.setAttribute("selected_employeelist", "active");
         EmployeeDaoService employeeDaoService = new EmployeeDaoManager();

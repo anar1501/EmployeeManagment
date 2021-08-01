@@ -13,9 +13,12 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("regname", "Register");
-        request.setAttribute("home_url", "home");
+        request.setAttribute("home_url", request.getContextPath()+"/home");
+        request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
         request.setAttribute("employeelist_url", request.getContextPath() + "/private/employee-list");
         request.setAttribute("insert_url", request.getContextPath() + "/private/insert");
+        request.setAttribute("edit_url", request.getContextPath()+"/private/edit-employee-page");
+        request.setAttribute("delete_url", request.getContextPath()+"/private/delete-employee-page");
         request.setAttribute("login_url", "login");
         request.setAttribute("register_url", "#");
         request.setAttribute("selected_register", "active");

@@ -19,12 +19,16 @@ public class ResendController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String userId = request.getParameter("id");
+        
         UserDaoService userDaoService = new UserDaoManager();
+        
         if (userId != null) {
+            
             int id = Integer.parseInt(userId);
             User user = userDaoService.findById(id);
-            
+
             if (user != null) {
 
                 String activationCode = UUID.randomUUID().toString();
@@ -44,8 +48,9 @@ public class ResendController extends HttpServlet {
 
                 SendEmail.sendAsync(user.getEmail(), text, subject);
 
-                request.setAttribute("info2", "Activation code was successfully sent! Please check your email!");
+                request.setAttribute("infos", "Activation code was successfully sent! Please check your email!");
                 request.getRequestDispatcher("success-info").forward(request, response);
+                
             }
 
         }

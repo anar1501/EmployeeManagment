@@ -47,4 +47,52 @@ public class EmployeeDaoManager implements EmployeeDaoService {
         }
     }
 
+    @Override
+    public Employee findById(int id) {
+        try (Connection connection = DbConnection.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from employee where id=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Employee employee = new Employee();
+                employee.setId(resultSet.getInt(1));
+                employee.setName(resultSet.getString(2));
+                employee.setSurname(resultSet.getString(3));
+                employee.setAge(resultSet.getInt(4));
+                employee.setSalary(resultSet.getDouble(5));
+                return employee;
+            }
+        } catch (Exception e) {
+            System.out.println("findById error: " + e);
+        }
+        return null;
+    }
+
+    @Override
+    public void updateById(Employee employee) {
+        try (Connection connection = DbConnection.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("update employee set id=?,name=?,surname=?,age=?,salary=? where id=?");
+            preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setString(2, employee.getName());
+            preparedStatement.setString(3, employee.getSurname());
+            preparedStatement.setInt(4, employee.getAge());
+            preparedStatement.setDouble(5, employee.getSalary());
+            preparedStatement.setDouble(6, employee.getId());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("updateById error: " + e);
+        }
+    }
+
+    @Override
+    public void deleteById(Employee employee) {
+        try (Connection connection = DbConnection.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from employee where id=?");
+            preparedStatement.setInt(1, employee.getId());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("deleteById error: " + e);
+        }
+    }
+
 }

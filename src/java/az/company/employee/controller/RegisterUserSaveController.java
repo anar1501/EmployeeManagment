@@ -18,20 +18,33 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "RegisterUserSaveController", urlPatterns = {"/register-user-save"})
 public class RegisterUserSaveController extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+
             String name = request.getParameter("name");
             String surname = request.getParameter("surname");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             String repeatPassword = request.getParameter("password-repeat");
-            
-            if (!password.equals(repeatPassword)) {
-                request.setAttribute("error", "Password repeat is not same!");
+
+            UserDaoService userDaoService = new UserDaoManager();
+            User userdao = userDaoService.findByEmail(email);
+            if (userdao != null) {
+                if (email.equals(userdao.getEmail())) {
+                    //errore bu emailde register varsa onun atributudur
+                    request.setAttribute("errore", "There is already such an e-mail subscription!");
+                    request.getRequestDispatcher("register").forward(request, response);
+                }
+            } else if (!password.equals(repeatPassword)) {
+
+                //errorp password repeat password eyni olmazsa onun atributudur
+                request.setAttribute("errorp", "Password repeat is not same!");
                 request.getRequestDispatcher("register").forward(request, response);
+
             } else {
+
                 User user = new User();
                 user.setName(name);
                 user.setSurname(surname);
@@ -41,22 +54,23 @@ public class RegisterUserSaveController extends HttpServlet {
                 user.setActivationCode(MD5.hashedMd5(activationCode));
                 LocalDateTime expiredDate = LocalDateTime.now().plusHours(1);
                 user.setExpiredDate(expiredDate);
-                UserDaoService userDaoService = new UserDaoManager();
                 userDaoService.save(user);
-                
+
                 String subject = "Confirm Registration";
-                
+
                 String link = "http://localhost:8084/employee/registerconfirm?code=" + activationCode;
-                
+
                 String title = "Your confirmation link:\n " + link;
-                
+
                 SendEmail.sendAsync(email, title, subject);
-                
-                request.setAttribute("info2", "Your Registration was successfully! Pls check your email.");
+
+                //infos-info-success sehifesine yonlendirilen atributdur
+                request.setAttribute("infos", "Your Registration was successfully! Pls check your email.");
                 request.getRequestDispatcher("success-info").forward(request, response);
+
             }
         } catch (GeneralSecurityException e) {
-            
+
         }
     }
 

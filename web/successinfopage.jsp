@@ -14,7 +14,7 @@
             <span class="display-1">Thank You!</span>
             <p class="fs-5 mb-5">for registration in <span class="fw-bold">Employee <a href="/employee/home" class="blue-link">Managment</a></span></p>
             <img src="successimages/mail-sent.svg" alt="Email sent icon">
-            <h2 style="color:green">${info2}</h2>
+            <h2 style="color:green">${infos}</h2>
             <div class="mt-5">
                 <a href="/employee/home" class="btn btn-blue me-4">Homepage</a>
                 <a href="#" class="btn btn-blue">Visit the Blog</a>
