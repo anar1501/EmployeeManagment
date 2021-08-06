@@ -4,11 +4,9 @@ import az.company.employee.model.concrets.RolePermission;
 import java.util.List;
 
 public interface RolePermissionDaoService {
-    
-    List<RolePermission>findAll();
 
-     int findPermissionIdByRoleId(int roleId);
+    List<RolePermission> findAll();
 
-     List<RolePermission> findRoleAndPermissionId(int roleId, int permissionId);
-    
+    void save(int roleId, int permissionId);
+
 }

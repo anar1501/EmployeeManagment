@@ -11,6 +11,12 @@ public interface RoleDaoService {
 
     List<String> findRoleIdById(int roleId);
 
-    List<Role>  findPermissionIdByRoleId(int roleId);
+    List<Role> findPermissionIdByRoleId(int roleId);
+
+    Role findById(int id);
+
+    void updateStatusById(Role roleId);
+
+    void save(int roleId, int permissionId);
 
 }

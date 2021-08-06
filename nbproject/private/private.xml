@@ -4,10 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/NAZIM/Desktop/employee/web/rolepage.jsp</file>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/dao/abstracts/RoleDaoService.java</file>
             <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/model/concrets/Role.java</file>
+            <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/controller/SaveEditRoleController.java</file>
             <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/dao/concrets/RoleDaoManager.java</file>
             <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/controller/RoleListController.java</file>
+            <file>file:/C:/Users/NAZIM/Desktop/employee/web/editrolepage.jsp</file>
         </group>
     </open-files>
 </project-private>

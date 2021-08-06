@@ -8,9 +8,9 @@ public class RolePermission implements Entity {
 
     private int permissionId;
 
+    private String permissionName;
+
     private int status;
-    
-    private String name;
 
     public int getRoleId() {
         return roleId;
@@ -28,6 +28,14 @@ public class RolePermission implements Entity {
         this.permissionId = permissionId;
     }
 
+    public String getPermissionName() {
+        return permissionName;
+    }
+
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -36,17 +44,9 @@ public class RolePermission implements Entity {
         this.status = status;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
-        return "RolePermission{" + "roleId=" + roleId + ", permissionId=" + permissionId + ", status=" + status + '}';
+        return "RolePermission{" + "roleId=" + roleId + ", permissionId=" + permissionId + ", permissionName=" + permissionName + ", status=" + status + '}';
     }
 
 }

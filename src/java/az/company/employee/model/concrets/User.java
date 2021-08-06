@@ -30,7 +30,7 @@ public class User implements Entity {
     private int roleId;
 
     private String roleName;
-
+    
     public User() {
     }
 

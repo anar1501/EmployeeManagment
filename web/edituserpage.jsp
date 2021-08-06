@@ -36,10 +36,10 @@
                         <select name=role-id>
                             <c:forEach var="role" items="${roles}">
                                 <c:if test="${role.id eq user.roleId}">
-                                    <option value="${role.id}"  selected="${role.id}">${role.roleName}</option>
+                                    <option value="${role.id}"  selected="${role.id}">${role.name}</option>
                                 </c:if>
                                 <c:if test="${role.id ne user.roleId}">
-                                    <option value="${role.id}">${role.roleName}</option>
+                                    <option value="${role.id}">${role.name}</option>
                                 </c:if>
                             </c:forEach>
                         </select>

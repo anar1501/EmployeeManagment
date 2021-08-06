@@ -13,5 +13,8 @@ import java.util.List;
  * @author NAZIM
  */
 public interface PermissionDaoService {
+
     List<Permission> findAll();
+
+    Permission findById(int permissionId);
 }

@@ -3,7 +3,7 @@ package az.company.employee.dao.concrets;
 import az.company.employee.connection.concrets.DbConnection;
 import az.company.employee.dao.abstracts.UserDaoService;
 import az.company.employee.enums.UserStatusEnum;
-import az.company.employee.model.concrets.RolePermission;
+import az.company.employee.model.concrets.Role;
 import az.company.employee.model.concrets.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoManager implements UserDaoService {
-
+    
     @Override
     public void save(User user) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -28,10 +28,10 @@ public class UserDaoManager implements UserDaoService {
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.out.println("save error: " + e);
-
+            
         }
     }
-
+    
     @Override
     public User findByEmail(String email) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -53,14 +53,14 @@ public class UserDaoManager implements UserDaoService {
                 user.setRoleId(resultSet.getInt(7));
                 user.setRoleName(resultSet.getString(8));
                 return user;
-
+                
             }
         } catch (Exception e) {
             System.out.println("findByEmail error: " + e);
         }
         return null;
     }
-
+    
     @Override
     public User findByActivationCode(String activationCode) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -70,7 +70,7 @@ public class UserDaoManager implements UserDaoService {
             if (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt(1));
-                user.setExpiredDate(LocalDateTime.parse(resultSet.getString(2), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S")));
+                user.setExpiredDate(LocalDateTime.parse(resultSet.getString(2), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 user.setStatus(resultSet.getInt(3));
                 return user;
             }
@@ -79,7 +79,7 @@ public class UserDaoManager implements UserDaoService {
         }
         return null;
     }
-
+    
     @Override
     public void updateStatusById(int id, UserStatusEnum userStatusEnum) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -91,7 +91,7 @@ public class UserDaoManager implements UserDaoService {
             System.out.println("updateStatusById error" + e);
         }
     }
-
+    
     @Override
     public User findById(int id) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -103,7 +103,7 @@ public class UserDaoManager implements UserDaoService {
                 user.setId(resultSet.getInt(1));
                 user.setEmail(resultSet.getString(2));
                 user.setName(resultSet.getString(3));
-                user.setCreatedDate(LocalDateTime.parse(resultSet.getString(4), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S")));
+                user.setCreatedDate(LocalDateTime.parse(resultSet.getString(4), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 user.setStatus(resultSet.getInt(5));
                 user.setRoleId(resultSet.getInt(6));
                 return user;
@@ -113,7 +113,7 @@ public class UserDaoManager implements UserDaoService {
         }
         return null;
     }
-
+    
     @Override
     public void updateConfirmation(User user) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -126,7 +126,7 @@ public class UserDaoManager implements UserDaoService {
             System.out.println("updateConfirmation error: " + e);
         }
     }
-
+    
     @Override
     public void updateForgetPasswordConfirmation(User user) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -139,18 +139,18 @@ public class UserDaoManager implements UserDaoService {
             System.out.println("updateForgetPasswordConfirmation error: " + e);
         }
     }
-
+    
     @Override
     public User findByPasswordConfirmationCode(String passwordConfirmationcode) {
         try (Connection connection = DbConnection.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("select id,password_expired_date from users where password_confirmation_code=?");
             preparedStatement.setString(1, passwordConfirmationcode);
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            
             if (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt(1));
-                user.setPswExpiredDate(LocalDateTime.parse(resultSet.getString(2), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S")));
+                user.setPswExpiredDate(LocalDateTime.parse(resultSet.getString(2), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 return user;
             }
         } catch (Exception e) {
@@ -158,7 +158,7 @@ public class UserDaoManager implements UserDaoService {
         }
         return null;
     }
-
+    
     @Override
     public void updatePassword(User user) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -170,7 +170,7 @@ public class UserDaoManager implements UserDaoService {
             System.out.println("updatePassword error : " + e);
         }
     }
-
+    
     @Override
     public String findByIdAndPageUrl(int roleId, String pageUrl) {
         try (Connection connection = DbConnection.getConnection()) {
@@ -179,21 +179,21 @@ public class UserDaoManager implements UserDaoService {
                     + "join permission p "
                     + "on rp.permission_id=p.id "
                     + "where rp.status=1 and rp.role_id=? and p.page_url=?");
-
+            
             preparedStatement.setInt(1, roleId);
             preparedStatement.setString(2, pageUrl);
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            
             if (resultSet.next()) {
                 return resultSet.getString(1);
             }
-
+            
         } catch (Exception e) {
             System.out.println("findByIdAndPageUrl error: " + e);
         }
         return null;
     }
-
+    
     @Override
     public List<User> findExceptAdmin(int id) {
         List<User> users = new ArrayList<>();
@@ -209,7 +209,7 @@ public class UserDaoManager implements UserDaoService {
                 User user = new User();
                 user.setId(resultSet.getInt(1));
                 user.setName(resultSet.getString(2));
-                user.setCreatedDate(LocalDateTime.parse(resultSet.getString(3), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S")));
+                user.setCreatedDate(LocalDateTime.parse(resultSet.getString(3), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
                 user.setRoleName(resultSet.getString(4));
                 user.setStatus(resultSet.getInt(5));
                 users.add(user);
@@ -219,14 +219,14 @@ public class UserDaoManager implements UserDaoService {
         }
         return users;
     }
-
+    
     @Override
     public int findRoleIdByUserId(int id) {
         try (Connection con = DbConnection.getConnection()) {
             PreparedStatement pr = con.prepareStatement("select role_id from users where id=?");
             pr.setInt(1, id);
             ResultSet rs = pr.executeQuery();
-
+            
             if (rs.next()) {
                 return rs.getInt(1);
             }
@@ -235,7 +235,7 @@ public class UserDaoManager implements UserDaoService {
         }
         return 0;
     }
-
+    
     @Override
     public void updateRoleIdAndStatus(User user) {
         try (Connection con = DbConnection.getConnection()) {
@@ -249,12 +249,12 @@ public class UserDaoManager implements UserDaoService {
             System.out.println("updateRoleIdAndStatus error: " + e);
         }
     }
-
+    
     @Override
-    public int findPermissionOfRoleById(int roleId) {
+    public Role findPermissionOfRoleById(int roleId) {
         try (Connection c = DbConnection.getConnection()) {
             PreparedStatement p = c.prepareStatement(
-                    "select p.id from role_permission rp "
+                    "select p.page_name from role_permission rp "
                     + "left join permission p "
                     + "on rp.permission_id=p.id "
                     + "where rp.role_id=?"
@@ -262,15 +262,16 @@ public class UserDaoManager implements UserDaoService {
             p.setInt(1, roleId);
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
-
-                return rs.getInt(1);
+                Role role = new Role();
+                role.setPermissionName(rs.getString(1));
+                return role;
             }
-
+            
         } catch (Exception e) {
             System.out.println("findPermissionOfRoleById error: " + e);
         }
-        return 0;
-
+        return null;
+        
     }
-
+    
 }

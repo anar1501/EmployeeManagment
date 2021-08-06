@@ -25,6 +25,7 @@ public class EditUserController extends HttpServlet {
         if (idStr != null) {
             
             int id = Integer.parseInt(idStr);
+            
             UserDaoService usd = new UserDaoManager();
             User user = usd.findById(id);
             RoleDaoService rds = new RoleDaoManager();

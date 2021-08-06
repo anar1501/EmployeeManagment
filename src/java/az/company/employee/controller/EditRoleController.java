@@ -3,14 +3,11 @@ package az.company.employee.controller;
 import az.company.employee.dao.abstracts.PermissionDaoService;
 import az.company.employee.dao.abstracts.RoleDaoService;
 import az.company.employee.dao.abstracts.RolePermissionDaoService;
-import az.company.employee.dao.abstracts.UserDaoService;
 import az.company.employee.dao.concrets.PermissionDaoManager;
 import az.company.employee.dao.concrets.RoleDaoManager;
 import az.company.employee.dao.concrets.RolePermissionDaoManager;
-import az.company.employee.dao.concrets.UserDaoManager;
 import az.company.employee.model.concrets.Permission;
 import az.company.employee.model.concrets.Role;
-import az.company.employee.model.concrets.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,20 +15,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "RoleListController", urlPatterns = {"/admin/rolelist"})
-public class RoleListController extends HttpServlet {
+@WebServlet(name = "EditRoleController", urlPatterns = {"/admin/edit-role"})
+public class EditRoleController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        Object userObject = session.getAttribute("user");
-        User user = (User) userObject;
+        String idStr = request.getParameter("id");
 
-        if (user != null) {
+        if (idStr != null) {
+
+            int id = Integer.parseInt(idStr);
             
+            RoleDaoService rds = new RoleDaoManager();
+            
+            Role role = rds.findById(id);
+            
+            
+            
+            PermissionDaoService permissionDaoService = new PermissionDaoManager();
+            List<Permission> permissions = permissionDaoService.findAll();
+
             request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
             request.setAttribute("home_url", request.getContextPath() + "/home");
             request.setAttribute("employeelist_url", request.getContextPath() + "/private/employee-list");
@@ -40,17 +45,16 @@ public class RoleListController extends HttpServlet {
             request.setAttribute("delete_url", request.getContextPath() + "/private/delete-employee-page");
             request.setAttribute("login_url", "login");
             request.setAttribute("register_url", "register");
-
-            RoleDaoService rds = new RoleDaoManager();
             
-            List<Role> roles = rds.findAll();
-            
-            request.setAttribute("roles", roles);
+            request.setAttribute("role", role);
             
             request.setAttribute("rds", rds);
-            
-            request.getRequestDispatcher("/rolepage.jsp").forward(request, response);
+
+            request.setAttribute("permissions", permissions);
+            request.getRequestDispatcher("/editrolepage.jsp").forward(request, response);
+
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

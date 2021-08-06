@@ -29,5 +29,23 @@ public class PermissionDaoManager implements PermissionDaoService {
         return permissions;
     }
 
-    
+    @Override
+    public Permission findById(int permissionId) {
+        try (Connection c = DbConnection.getConnection()) {
+            PreparedStatement p = c.prepareStatement("select id,page_name from permission where id=?");
+            p.setInt(1, permissionId);
+            ResultSet resultSet = p.executeQuery();
+            if (resultSet.next()) {
+                Permission permission = new Permission();
+                permission.setId(resultSet.getInt(1));
+                permission.setPageName(resultSet.getString(2));
+                return permission;
+            }
+
+        } catch (Exception e) {
+            System.out.println("findById error: " + e);
+        }
+        return null;
+    }
+
 }

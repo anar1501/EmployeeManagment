@@ -1,6 +1,7 @@
 package az.company.employee.dao.abstracts;
 
 import az.company.employee.enums.UserStatusEnum;
+import az.company.employee.model.concrets.Role;
 import az.company.employee.model.concrets.RolePermission;
 import az.company.employee.model.concrets.User;
 import java.util.List;
@@ -33,5 +34,5 @@ public interface UserDaoService {
 
     void updateRoleIdAndStatus(User user);
 
-    int findPermissionOfRoleById(int roleId);
+    Role findPermissionOfRoleById(int roleId);
 }
