@@ -14,7 +14,7 @@
             <link href="/employee/https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel=stylesheet>
 
         </head>
-        <body>
+        <body style="background-color: aliceblue;">
 
             <div class="container" w-100>
                 <table class="table table-bordered w-50 mr-auto ml-auto" >

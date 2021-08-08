@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/web/rolepage.jsp</file>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/model/concrets/Role.java</file>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/controller/SaveEditRoleController.java</file>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/dao/concrets/RoleDaoManager.java</file>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/src/java/az/company/employee/controller/RoleListController.java</file>
-            <file>file:/C:/Users/NAZIM/Desktop/employee/web/editrolepage.jsp</file>
+            <file>file:/C:/Users/NAZIM/Desktop/employee/web/footer.jsp</file>
+            <file>file:/C:/Users/NAZIM/Desktop/employee/web/homepage.jsp</file>
+            <file>file:/C:/Users/NAZIM/Desktop/employee/web/cssfooter/main.css</file>
         </group>
     </open-files>
 </project-private>

@@ -20,7 +20,9 @@ public class SaveEditRoleController extends HttpServlet {
         if (request.getParameter("submit") != null) {
 
             String roleStr = request.getParameter("role-id");
+
             if (roleStr != null) {
+
                 int roleId = Integer.parseInt(roleStr);
                 Role role = new Role();
                 role.setId(roleId);
@@ -31,11 +33,11 @@ public class SaveEditRoleController extends HttpServlet {
                         permission.setId(Integer.parseInt(permissionStr[i]));
                         RoleDaoService rds = new RoleDaoManager();
                         rds.save(role.getId(), permission.getId());
-                        response.sendRedirect(request.getContextPath() + "/admin/rolelist");
                     }
 
                 }
             }
+            response.sendRedirect(request.getContextPath() + "/admin/rolelist");
 
         } else {
 

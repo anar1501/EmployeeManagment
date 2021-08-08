@@ -12,6 +12,7 @@ public class HomeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         request.setAttribute("homename", "Home Page");
         request.setAttribute("home_url", "#");
         request.setAttribute("admin_url", request.getContextPath() + "/admin/admin-panel");
